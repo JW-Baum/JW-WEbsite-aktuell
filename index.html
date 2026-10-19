@@ -760,6 +760,24 @@
                 text-align: center;
             }
         }
+
+        /* Einheitliche Medienplätze: Datei hochladen, Platzhalter verschwindet automatisch. */
+        .auto-media { position: relative; overflow: hidden; }
+        .auto-media > img {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: center; display: none;
+        }
+        .auto-media > img.is-loaded { display: block; }
+        .auto-media > .media-placeholder { position: relative; z-index: 1; }
+        .auto-media.has-media > .media-placeholder { display: none; }
+        .vehicle-image { height: 220px; min-height: 220px; }
+        .about-image { min-height: 360px; }
+        .brand-logo-file {
+            display: none; width: 46px; height: 46px; flex: 0 0 auto;
+            object-fit: contain; background: transparent;
+        }
+        .brand-logo-file.is-loaded { display: block; }
+        .header-video.has-media .video-placeholder-content { display: none; }
     </style>
 </head>
 
@@ -768,6 +786,7 @@
         <div class="container">
             <nav class="nav" aria-label="Hauptnavigation">
                 <a href="#" class="brand">
+                    <img class="brand-logo-file" src="/images/Logo.png" alt="JW Garten & Forst Logo" data-logo-image>
                     <svg class="brand-logo" viewBox="0 0 100 100" aria-label="JW Garten und Forst Logo" role="img">
                         <circle cx="50" cy="50" r="46" fill="#1f1f1f" stroke="#f57c00" stroke-width="5"/>
                         <path d="M50 18 C34 32 26 44 26 58 C26 74 38 84 50 84 C62 84 74 74 74 58 C74 44 66 32 50 18Z" fill="#4caf50"/>
@@ -804,13 +823,10 @@
                     </div>
                 </div>
 
-                <div class="header-video media-frame" role="img" aria-label="Videoplatzhalter für Imagefilm">
-                    <!--
-                        Späteres Video hier einsetzen:
-                        <video autoplay muted loop playsinline poster="hero-poster.jpg">
-                            <source src="hero-film.mp4" type="video/mp4">
-                        </video>
-                    -->
+                <div class="header-video media-frame" aria-label="JW Garten & Forst Imagefilm">
+                    <video autoplay muted loop playsinline preload="metadata" aria-label="Imagefilm JW Garten & Forst" data-auto-video>
+                        <source src="/images/Imagefilm.mp4" type="video/mp4">
+                    </video>
                     <div class="video-placeholder-content">
                         <div class="play-button">▶</div>
                         <strong>Imagefilm Platzhalter</strong>
@@ -837,9 +853,11 @@
             <div class="services">
                 <div class="service-box">
                     <div class="service-image-wrap">
-                        <div class="service-image media-frame" role="img" aria-label="Bildplatzhalter Baumfällung">
-                            IMAGE PLACEHOLDER<br>Motorsäge / Stamm
-                        </div>
+                        <div class="service-image media-frame auto-media" aria-label="Bildplatzhalter Baumfällung">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Motorsäge / Stamm
+                        </span>
+                        <img src="/images/Baumfaellung.jpg" alt="Baumfällung" loading="lazy" data-auto-image>
+                    </div>
                     </div>
                     <div class="service-content">
                         <span class="service-number">01</span>
@@ -850,9 +868,11 @@
 
                 <div class="service-box">
                     <div class="service-image-wrap">
-                        <div class="service-image media-frame" role="img" aria-label="Bildplatzhalter Gefahrenfällung">
-                            IMAGE PLACEHOLDER<br>Kletterer / Risikobaum
-                        </div>
+                        <div class="service-image media-frame auto-media" aria-label="Bildplatzhalter Gefahrenfällung">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Kletterer / Risikobaum
+                        </span>
+                        <img src="/images/Gefahrenfaellung.jpg" alt="Gefahrenfällung" loading="lazy" data-auto-image>
+                    </div>
                     </div>
                     <div class="service-content">
                         <span class="service-number">02</span>
@@ -863,9 +883,11 @@
 
                 <div class="service-box">
                     <div class="service-image-wrap">
-                        <div class="service-image media-frame" role="img" aria-label="Bildplatzhalter Sturmfällungen">
-                            IMAGE PLACEHOLDER<br>Sturmschaden / Windbruch
-                        </div>
+                        <div class="service-image media-frame auto-media" aria-label="Bildplatzhalter Sturmfällungen">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Sturmschaden / Windbruch
+                        </span>
+                        <img src="/images/Sturmfaellung.jpg" alt="Sturmfällungen" loading="lazy" data-auto-image>
+                    </div>
                     </div>
                     <div class="service-content">
                         <span class="service-number">03</span>
@@ -876,9 +898,11 @@
 
                 <div class="service-box">
                     <div class="service-image-wrap">
-                        <div class="service-image media-frame" role="img" aria-label="Bildplatzhalter Baumpflege">
-                            IMAGE PLACEHOLDER<br>Kronenpflege
-                        </div>
+                        <div class="service-image media-frame auto-media" aria-label="Bildplatzhalter Baumpflege">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Kronenpflege
+                        </span>
+                        <img src="/images/Baumpflege.jpg" alt="Baumpflege" loading="lazy" data-auto-image>
+                    </div>
                     </div>
                     <div class="service-content">
                         <span class="service-number">04</span>
@@ -889,9 +913,11 @@
 
                 <div class="service-box">
                     <div class="service-image-wrap">
-                        <div class="service-image media-frame" role="img" aria-label="Bildplatzhalter Kletter- und Steigertechnik">
-                            IMAGE PLACEHOLDER<br>Hubsteiger / Seilklettertechnik
-                        </div>
+                        <div class="service-image media-frame auto-media" aria-label="Bildplatzhalter Kletter- und Steigertechnik">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Hubsteiger / Seilklettertechnik
+                        </span>
+                        <img src="/images/Klettertechnik.jpg" alt="Kletter- und Steigertechnik" loading="lazy" data-auto-image>
+                    </div>
                     </div>
                     <div class="service-content">
                         <span class="service-number">05</span>
@@ -938,9 +964,11 @@
                     </div>
                 </div>
 
-                <div class="about-image media-frame" role="img" aria-label="Bildplatzhalter für Arbeit oder Naturmotiv">
-                    IMAGE PLACEHOLDER<br>Arbeit / Natur
-                </div>
+                <div class="about-image media-frame auto-media" aria-label="Bildplatzhalter für Arbeit oder Naturmotiv">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Arbeit / Natur
+                </span>
+                        <img src="/images/Team.jpg" alt="Arbeit oder Naturmotiv" loading="lazy" data-auto-image>
+                    </div>
             </div>
         </div>
     </section>
@@ -956,16 +984,20 @@
 
             <div class="vehicles">
                 <div class="vehicle-box">
-                    <div class="vehicle-image media-frame" role="img" aria-label="Bildplatzhalter für spezialisierte Technik">
-                        IMAGE PLACEHOLDER<br>Spezialisierte Technik
+                    <div class="vehicle-image media-frame auto-media" aria-label="Bildplatzhalter für spezialisierte Technik">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Spezialisierte Technik
+                    </span>
+                        <img src="/images/Spezialisierte-Technik.jpg" alt="spezialisierte Technik" loading="lazy" data-auto-image>
                     </div>
                     <h3>Spezialisierte Technik</h3>
                     <p>Passende Ausrüstung für Fällung, Pflege und Sicherungsarbeiten – abgestimmt auf Gelände, Baumzustand und Einsatzlage.</p>
                 </div>
 
                 <div class="vehicle-box">
-                    <div class="vehicle-image media-frame" role="img" aria-label="Bildplatzhalter für Nissan Navara">
-                        IMAGE PLACEHOLDER<br>Nissan Navara
+                    <div class="vehicle-image media-frame auto-media" aria-label="Bildplatzhalter für Nissan Navara">
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Nissan Navara
+                    </span>
+                        <img src="/images/Gelaendegaengigkeit.jpg" alt="Nissan Navara" loading="lazy" data-auto-image>
                     </div>
                     <h3>Geländegängige Mobilität</h3>
                     <p>Flexibel, geländegängig und perfekt für anspruchsvolle Einsätze.</p>
@@ -973,11 +1005,10 @@
 
                 <div class="vehicle-box">
    
-<div class="vehicle-image media-frame">
-  <img src="/images/Baustellensicherung.jpg"
-       alt="Baustellensicherung"
-       style="width:100%; height:100%; object-fit:cover; display:block;">
-</div>
+<div class="vehicle-image media-frame auto-media">
+                        <img src="/images/Baustellensicherung.jpg" alt="Baustellensicherung" data-auto-image>
+                        <span class="media-placeholder">IMAGE PLACEHOLDER<br>Baustellensicherung</span>
+                    </div>
 
                     <h3>Sichere Einsatzabläufe</h3>
                     <p>Klare Absicherung, strukturierte Arbeitsbereiche und saubere Kommunikation für professionelle Abläufe vor Ort.</p>
@@ -1063,6 +1094,37 @@
     </footer>
 
     <script>
+        // Die Dateinamen sind fest zugeordnet. Fehlende Bilder behalten ihren Platzhalter.
+        document.querySelectorAll('[data-auto-image]').forEach((img) => {
+            const show = () => {
+                img.classList.add('is-loaded');
+                img.parentElement.classList.add('has-media');
+            };
+            if (img.complete && img.naturalWidth > 0) show();
+            else img.addEventListener('load', show, { once: true });
+        });
+
+        // Das spätere transparente Logo ersetzt erst nach erfolgreichem Laden das SVG.
+        const logoFile = document.querySelector('[data-logo-image]');
+        if (logoFile) {
+            const showLogo = () => {
+                logoFile.classList.add('is-loaded');
+                const fallbackLogo = logoFile.nextElementSibling;
+                if (fallbackLogo) fallbackLogo.style.display = 'none';
+            };
+            if (logoFile.complete && logoFile.naturalWidth > 0) showLogo();
+            else logoFile.addEventListener('load', showLogo, { once: true });
+        }
+
+        // Der Imagefilm läuft stumm in Schleife, sobald die MP4 verfügbar ist.
+        const imageFilm = document.querySelector('[data-auto-video]');
+        if (imageFilm) {
+            imageFilm.addEventListener('canplay', () => {
+                imageFilm.parentElement.classList.add('has-media');
+                imageFilm.play().catch(() => {});
+            });
+        }
+
         const contactTriggers = document.querySelectorAll('[data-contact-trigger]');
         const contactModal = document.getElementById('contactModal');
         const closeButtons = document.querySelectorAll('[data-modal-close]');
